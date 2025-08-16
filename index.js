@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
+
 
 const path = require("path");
 
@@ -23,6 +24,10 @@ let posts = [
   { id: uuidv4(), username: "Mehak", content: "I Love Akash " },
   { id: uuidv4(), username: "Shivanshu", content: "I Love maggie" },
 ];
+
+app.get("/", (req, res) => {
+  res.redirect("/posts");
+});
 
 app.get("/posts", (req, res) => {
   res.render("index.ejs", { posts });
